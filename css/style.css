@@ -1,0 +1,650 @@
+*,body,html,:root{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+    font-size: 16px;
+    --header: rgb(187, 183, 183);
+    --background: rgb(17, 17, 17);
+    --linearOne:  linear-gradient(5deg, rgba(22, 22, 22, 0.925),rgba(29, 29, 29, 0.897),rgba(41, 39, 39, 0.918));
+    --linearTwo:  linear-gradient(-5deg, rgba(54, 53, 53, 0.904),rgba(44, 42, 42, 0.904),rgba(34, 31, 31, 0.897));
+
+}
+body{
+    position: relative;
+background-color: var(--background);
+color: rgba(221, 221, 221, 0.986);
+font-family: 'Roboto Slab', serif;
+}
+
+/* Logo w menu na mobile*/
+.mobile_logo{
+display: block;
+background-color: rgb(19, 18, 18);
+    width: 100%;
+    height: 60px;
+    background-image: url('../img/logo.png');
+    z-index: 90;
+   background-position: center;
+   background-size: cover;
+   padding: 5px 0px;
+}
+@media (min-width: 900px) {
+    .mobile_logo{
+        display: none;
+    }
+  }
+
+
+/* Strzałka pojawiająca sie po zjechaniu na dół strony */
+.arrowUP{
+    position: fixed;
+    top: 50vh;
+    right: -70px;
+width: 70px;
+border-top-left-radius: 10px;
+border-bottom-left-radius: 10px;
+z-index: 200;
+background-image: var(--linearOne);
+cursor: pointer;
+text-decoration: none;
+transition: transform .5s, border .5s;
+border: 1px solid transparent;
+}
+
+.arrowUP:hover{
+    border: 1px solid rgb(255, 255, 255);
+
+}
+.arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     width: 20px; 
+    height: 20px; 
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    margin: 10px;
+}
+.arrow i{
+    color: #000;
+   
+     
+}
+
+/* Klasa nagłowkow w sekcjach... */
+.header_section{
+    text-align: center;
+    padding: 20px;
+    color: var(--header);
+    text-transform: uppercase;
+font-size: 2.2rem;
+visibility: hidden;
+}
+
+  /* -------------------------------------NAVIGATION---------------------- */
+
+  
+.desktop_menu{
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.719);
+    font-size: 1.1rem;
+
+}
+
+.desktop_menu .logo{
+    top: 0px;
+    left: 20%;
+    transform: translate(-50%, 0);
+    position: absolute;
+}
+.desktop_menu .logo img{
+    height: 70px;
+}
+.desktop_menu ul{
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 5px;
+
+    
+}
+
+.desktop_menu ul li{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.desktop_menu ul li a{
+    color: #ddd;
+    padding: 20px 50px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color .5s , background .3s;
+    border: 1px solid rgba(7, 7, 7, 0.521);
+}
+
+.desktop_menu ul li a:hover{
+    background-color: rgba(48, 47, 47, 0.76);
+    color: rgb(113, 105, 141);
+    border: 1px solid rgb(153, 153, 153);
+}
+
+/* --------------- MOBILE__MENU----------- */
+
+.mobile_menu{
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: -150px;
+    width: 150px;
+    height: 100vh;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(12, 12, 12, 0.836);
+    transition: transform .5s;
+}
+.mobile_menu ul{
+    width: 100%;
+    list-style: none;
+    padding: 0px;
+    
+}
+.mobile_menu ul li{
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    border-bottom: 1px solid rgb(59, 59, 57);
+}
+
+.mobile_menu ul li a{
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: #ddd;
+    padding: 10px 0px 30px 10px;
+    transition: padding .6s, background .9s;
+}
+.mobile_menu ul li a:hover{
+    padding: 10px 0px 30px 30px;
+background-color: #222;
+}
+
+
+/* ---------------HAMBURGER_MENU_ICO------ */
+.hamburger_menu{
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    z-index: 20;
+    
+}
+
+.hamburger_menu span{
+    /* display: block; */
+    width: 80%;
+height: 3px;
+background-color: rgb(255, 255, 255);
+
+}
+.hamburger_menu span:nth-child(1){
+    position: absolute;
+top: 3px;
+transition: transform .5s;
+
+}
+.hamburger_menu span:nth-child(2){
+    position: absolute;
+    top: 11px;
+    
+}
+.hamburger_menu span:nth-child(3){
+    position: absolute;
+    top: 19px;
+    transition: transform .9s;
+}
+
+
+/* -----------MEDIA_QUERIES */
+
+
+
+@media (max-width: 1190px) {
+    .desktop_menu ul li a{
+        padding: 10px 35px;
+        margin: 0px;
+    }
+    .desktop_menu .logo img{
+        height: 50px;
+    }
+  }
+
+@media (max-width: 900px) {
+    .desktop_menu{
+        display: none;
+    }
+    .mobile_menu{
+        display: flex;
+    }
+    .hamburger_menu{
+        display: flex;
+    }
+  }
+
+@media (max-width: 600px) {
+    .mobile_menu{
+        left: -150px;
+        width: 150px;
+    }
+    .activeMenu{
+        transform: translate(150px,0);
+    }
+
+  }
+
+
+  /* -----------------------------SLIDER-------------------------------------- */
+
+  #start{ 
+    width: 100%;
+    max-height: 100vh;
+ }
+
+
+/* ---------------------------------ABOUT_ME--------------------------------- */
+
+
+#about_me{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(rgb(7, 7, 7),rgb(32, 30, 30),rgb(63, 58, 58));
+    padding: 20px;
+}
+
+#about_me .author_photo{
+ width: 20vw;
+    height: 30vw;
+    /* overflow: hidden; */
+    position: relative;
+    
+}
+.author_photo::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+border: 2px solid rgba(191, 183, 183, 0.384);
+}
+
+
+#about_me .author_photo .author{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   width: 100%;
+   height: 100%;
+    background-image: url('../img/Portraits/Piotr Kuchta fotograf.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px; 
+}
+#about_me .content{
+    color: #ddd;
+    width: 50vw;
+    font-weight: bold;
+    z-index: 12;
+    font-size: 1.4rem;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+#about_me .content .text{
+    display: flex;
+flex-direction: column;
+align-items: center;
+}
+.btn{
+    width: 150px;
+    padding: 10px;
+    margin: 10px;
+    transition: 1s;
+    
+}
+
+.AboutMeTittle{
+font-size: 1.5rem;
+}
+
+.span-text{
+   width: 100%;
+   font-size: 1rem;
+   margin-bottom: 20px;
+
+}
+
+
+@media (max-width: 800px) {
+
+    #about_me p{
+     width: 90vw;
+        font-size: 1.5rem;  
+        height: auto; 
+    }
+    #about_me span{
+    
+        font-size: .8rem;  
+        
+    }
+
+  }
+
+
+
+
+/* --------------------------PORTFOLIO------------------------------------ */
+
+#portfolio{
+    width: 100%;
+    padding-bottom: 20px;
+    background-image:  var(--linearOne);
+}
+
+#portfolio ul{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+display: flex;
+justify-content: space-around;
+list-style: none;
+text-decoration: none;
+overflow: hidden;
+}
+
+#portfolio ul li{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1%;
+    background-size: cover;
+    transition: .5s;
+    border: 3px solid rgb(39, 38, 38);
+    overflow: hidden;
+  
+
+
+}
+#portfolio ul li a{
+   
+ text-decoration: none;
+    color: rgb(241, 238, 238);
+    font-size: 1.2rem;
+    padding: 200px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color .5s, font-size .6s;
+
+
+}
+#portfolio ul li a:hover{
+    color: rgb(146, 146, 146);
+    font-size: 1.4rem;
+   
+}
+
+#portfolio ul li:hover{
+    border: 3px solid rgb(255, 255, 255);
+
+   }
+
+#portfolio ul .portrety{
+    background-image: url('../img/Portraits/Sesja portretowa 6.jpg');
+   
+}
+#portfolio ul .krajobrazy{
+    background-image: url('../img/Landscape/Fotografia krajobrazowa 2.jpg');
+}
+#portfolio ul .studio{
+    background-image: url('../img/Studio/Kompozycja w studio 1.jpg');
+}
+
+
+
+@media (max-width: 1300px) {
+
+    #portfolio ul li{
+        margin: 5px 0;
+           width: 30%;
+    }
+  }
+
+@media (max-width: 670px) {
+ 
+    #portfolio ul{
+flex-direction: column;
+justify-content: space-between;
+    }
+    #portfolio ul li{
+        text-align: center;
+        width: 100%;
+    }
+  }
+
+  /* --------------------------OFFER---------------------------- */
+
+.inline{
+    position: absolute;
+    left: 50%;
+transform: translate(-50%,0);
+  width: 90vw;
+  height: 5px;
+  background-color: rgba(112, 112, 112, 0.315);  
+
+}
+
+.inlineSmall{
+    display: block;
+width:15vw;
+height: 5px;
+    background-color: rgba(112, 112, 112, 0.315);   
+    border-radius: 20%;
+    margin-bottom: 2vh;
+}
+
+#offer{
+    width: 100%;
+    text-align: center;
+    font-size: 1.4rem; 
+    padding: 20px;
+   background-image: var(--linearTwo);
+}
+
+.introduction{
+width: 60vw;
+margin: 0 auto;
+}
+
+.article{
+    margin: 20px auto;
+width: 40vw;
+display: flex;
+align-items: flex-start;
+flex-direction: column;
+text-align: left;
+
+}
+.article li{
+    padding: 10px 0;
+   text-decoration: none;
+   list-style: none;
+font-weight: bold;
+}
+.article li p{
+    font-weight: lighter;
+}
+
+@media (max-width: 1200px){
+
+    .introduction{
+        width: 90vw;
+       
+        }
+        .article{
+      
+        width: 80vw;
+        
+        }
+}
+
+/* ----------------------CONTACT----------------------------------- */
+
+#contact{
+   display: flex;
+   flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-image: var(--linearOne);
+}
+#contact p{
+    width: 50vw;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+}
+
+#contact ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+
+#contact ul li{
+    margin: 20px;
+    list-style: none;
+    text-align: center;
+    transition: border .5s;
+}
+
+#contact ul li a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #777;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 1.3rem;
+    padding: 10px 20px;
+    transition: background .6s, color .3s;
+    border: 1px solid rgba(235, 231, 230, 0.103);
+    
+}
+.ico{
+    transition: border .6s;
+}
+.insta:hover{
+    border: 1px solid rgb(235, 155, 6);
+}
+
+.fb:hover{
+    border: 1px solid rgba(38, 0, 255, 0.877);
+}
+.eMail:hover{
+    border: 1px solid rgba(231, 17, 17, 0.877);
+}
+
+#contact ul li a:hover{
+color: rgb(255, 255, 255);
+background-color: rgba(0, 0, 0, 0.548);
+}
+
+@media (max-width: 800px){
+    #contact ul li a{
+        font-size: 1.0rem;
+        padding: 5px 10px;
+    }
+    #contact p{
+        width: 90vw;
+        font-size: 1.0rem;
+        letter-spacing: 0px;
+        word-spacing: 0px;
+    }
+}
+
+@media (max-width: 500px){
+    #contact ul{
+       flex-wrap: wrap;
+       justify-content: center;
+
+    }
+    #contact ul li{
+        margin: 5px;
+       
+    }
+}
+
+
+/* ---------------------------FOOTER------------------- */
+
+footer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-image: var(--linearTwo);
+    padding: 20px;
+    text-align: center;
+}
+
+footer .dateYear{
+    padding: 0 5px;
+}
+
+  /* --------DYNAMIC VARIABLES-------- */
+
+  
+  .rotateLineOne{
+    transform: translate(0 , 9px) rotate(45deg);
+    }
+    
+    .hiddenLineTwo{
+    visibility: hidden;
+    }
+    
+    .rotateLineThree{
+        transform: translate(0 , -7px) rotate(-45deg);
+    }
+    
+    .activeMenu{
+        transform: translate(150px,0);
+    }
